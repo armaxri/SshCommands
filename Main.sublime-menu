@@ -24,6 +24,14 @@
 			            "file": "${packages}/User/SshCommands.sublime-settings"
 			        }
 		        },
+                {
+                    "id" : "sshcommands_key_bindings",
+                    "caption" : "Key Bindings - Default",
+                    "command": "open_file", "args":
+                    {
+                        "file": "${packages}/SshCommands/Default.sublime-keymap"
+                    }
+                },
 		        {
 		            "id" : "sshcommands_run",
 		            "caption" : "Send Command",
