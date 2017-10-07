@@ -1,0 +1,49 @@
+{
+    "debug": true,
+    "add_missing_known_hosts": true,
+    "_known_host_keys_file_path": "/",
+    "_rsa_key_path": "/",
+    "commands":
+    {
+        "Default1":
+        {
+            "hostname": "raspberrypi",
+            "port": 22,
+            "username": "pi",
+            "password": "root",
+            "single_commands":
+            [
+                "less test3.txt",
+            ]
+        },
+        "Default2":
+        {
+            "hostname": "raspberrypi",
+            "port": 22,
+            "username": "pi",
+            "password": "root",
+            "single_commands":
+            [
+                "echo \"blub1\" > test1.txt",
+                "echo \"blub2\" > test2.txt",
+                "echo \"blub3\" > test3.txt",
+                "echo \"blub4\" > test4.txt",
+            ]
+        },
+        "Default3":
+        {
+            "hostname": "raspberrypi",
+            "port": 22,
+            "username": "pi",
+            "password": "root",
+            "single_commands":
+            [
+                "ls -l",
+                "less test1.txt",
+                "less test2.txt",
+                "less test3.txt",
+                "less test4.txt",
+            ]
+        },
+    }
+}
