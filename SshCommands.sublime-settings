@@ -39,9 +39,13 @@
             "single_commands":
             [
                 "ls -l",
+                "sleep 2",
                 "less test1.txt",
+                "sleep 2",
                 "less test2.txt",
+                "sleep 2",
                 "less test3.txt",
+                "sleep 2",
                 "less test4.txt",
             ]
         },
