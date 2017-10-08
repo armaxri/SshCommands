@@ -22,7 +22,7 @@ For Example::
 ```js
 {
     "add_missing_known_hosts": false,
-    "known_host_keys_file_path": "C:\\Users\\<username>\\.ssh\\known_hosts,
+    "known_host_keys_file_path": "C:\\Users\\<username>\\.ssh\\known_hosts",
     "rsa_key_path": "C:\\Users\\<username>\\.ssh\\id_rsa",
     "port": 22,
     "commands":
