@@ -162,10 +162,10 @@ class SshCommandExecuter(threading.Thread):
 
     def handle_single_command(self, client, command, view):
         trace('sending command: "' + command + '"')
+        view.run_command("insert", {"characters": ('$ ' + command + '\n')})
         stdin, stdout, stderr = client.exec_command(command)
         message = stdout.read().decode("utf-8") 
         trace('return of command: \n' + message + '\n')
 
-        message_4_output = '$ ' + command + '\n' + message
-        view.run_command("insert", {"characters": message_4_output})
+        view.run_command("insert", {"characters": message})
         return message
