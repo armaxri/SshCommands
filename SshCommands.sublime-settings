@@ -1,36 +1,45 @@
 {
-    "debug": true,
-    "add_missing_known_hosts": true,
-    "_known_host_keys_file_path": "/",
-    "_rsa_key_path": "/",
+    "add_missing_known_hosts": false,
+    "known_host_keys_file_path": "C:\\Users\\<username>\\.ssh\\known_hosts",
+    "rsa_key_path": "C:\\Users\\<username>\\.ssh\\id_rsa",
+    "port": 22,
     "commands":
     {
-        "Default1":
+        "Example: create files":
         {
             "hostname": "raspberrypi",
-            "port": 22,
-            "username": "pi",
-            "password": "root",
-            "single_commands":
-            [
-                "less test3.txt",
-            ]
-        },
-        "Default2":
-        {
-            "hostname": "raspberrypi",
-            "port": 22,
             "username": "pi",
             "password": "root",
             "single_commands":
             [
                 "echo \"blub1\" > test1.txt",
+                "sleep 2",
                 "echo \"blub2\" > test2.txt",
+                "sleep 2",
                 "echo \"blub3\" > test3.txt",
+                "sleep 2",
                 "echo \"blub4\" > test4.txt",
+                "sleep 2",
             ]
         },
-        "Default3":
+        "Example: read files":
+        {
+            "hostname": "raspberrypi",
+            "username": "pi",
+            "password": "root",
+            "single_commands":
+            [
+                "less test1.txt",
+                "sleep 2",
+                "less test2.txt",
+                "sleep 2",
+                "less test3.txt",
+                "sleep 2",
+                "less test4.txt",
+                "sleep 2",
+            ]
+        },
+        "Example: show files":
         {
             "hostname": "raspberrypi",
             "port": 22,
@@ -40,13 +49,6 @@
             [
                 "ls -l",
                 "sleep 2",
-                "less test1.txt",
-                "sleep 2",
-                "less test2.txt",
-                "sleep 2",
-                "less test3.txt",
-                "sleep 2",
-                "less test4.txt",
             ]
         },
     }

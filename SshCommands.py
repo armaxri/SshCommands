@@ -93,7 +93,7 @@ class SshCommands(sublime_plugin.WindowCommand):
         super_commands = settings.get(COMMAND_GROUP)
         command_dict = list(super_commands.values())[item]
 
-        trace('selected command name: "' + list(super_commands.keys())[item])
+        trace('selected command name: "' + list(super_commands.keys())[item] + '"')
 
         for setting_key in param_types:
             # Set the default setting for the parameter (not really useful and good values).
@@ -146,14 +146,14 @@ class SshCommandExecuter(threading.Thread):
             if PASSWORD in self.params:
                 client.connect(self.params[HOSTNAME], port=self.params[PORT], username=self.params[USERNAME], password=self.params[PASSWORD])
             else:
-                client.connect(self.params[HOSTNAME], port=self.params[PORT], username=self.params[USERNAME], pkey=self.params[RSA_KEY])
+                private_key = paramiko.RSAKey.from_private_key_file(self.params[RSA_KEY])
+                client.connect(self.params[HOSTNAME], port=self.params[PORT], username=self.params[USERNAME], pkey=private_key)
 
             for command in self.params[SINGLE_COMMANDS_GOUP]:
                 self.handle_single_command(client, command, output_view)
 
         except Exception as e:
-            print('*** Caught exception: %s: %s' % (e.__class__, e))
-            trace(print_exc())
+            trace('*** Caught exception: %s: %s' % (e.__class__, e))
             try:
                 client.close()
             except:
