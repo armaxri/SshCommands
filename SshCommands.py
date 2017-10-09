@@ -120,7 +120,8 @@ class SshCommandExecuter(threading.Thread):
 
 
     def run(self):
-        output_view = self.window.new_file()
+        self.panel = self.window.create_output_panel('ssh_output')
+        self.window.run_command('show_panel', {'panel': 'output.ssh_output'})
 
         try:
             client = paramiko.SSHClient()
@@ -141,7 +142,7 @@ class SshCommandExecuter(threading.Thread):
             # If there is set a password, it will use the password over
             # the RSA key. I choose this strategy since I believe it's more
             # common to set a global RSA key than a global password.
-            # 
+            #
             # ToDo: Search for a better strategy!
             if PASSWORD in self.params:
                 client.connect(self.params[HOSTNAME], port=self.params[PORT], username=self.params[USERNAME], password=self.params[PASSWORD])
@@ -150,7 +151,7 @@ class SshCommandExecuter(threading.Thread):
                 client.connect(self.params[HOSTNAME], port=self.params[PORT], username=self.params[USERNAME], pkey=private_key)
 
             for command in self.params[SINGLE_COMMANDS_GOUP]:
-                self.handle_single_command(client, command, output_view)
+                self.handle_single_command(client, command, self.panel)
 
         except Exception as e:
             trace('*** Caught exception: %s: %s' % (e.__class__, e))
@@ -164,7 +165,7 @@ class SshCommandExecuter(threading.Thread):
         trace('sending command: "' + command + '"')
         view.run_command("insert", {"characters": ('$ ' + command + '\n')})
         stdin, stdout, stderr = client.exec_command(command)
-        message = stdout.read().decode("utf-8") 
+        message = stdout.read().decode("utf-8")
         trace('return of command: \n' + message + '\n')
 
         view.run_command("insert", {"characters": message})
